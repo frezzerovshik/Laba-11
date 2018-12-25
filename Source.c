@@ -33,7 +33,7 @@ void main(void)
 		while (*buf!='\0')//Проверяем на наличие знаков приравнивания
 		{
 			if (*buf == '=' )
-				flag3 = 1;
+				flag3 = YES;
 			buf++;
 		}
 		while (*ptr != ' ')//Берем первое слово
@@ -46,13 +46,13 @@ void main(void)
 		word[i++] = '\0';
 		/*Проверяем совпадение с типами данных*/
 		if (strcmp(word, types[0]) == 0 || strcmp(word, types[1]) == 0 || strcmp(word, types[2]) == 0 || strcmp(word, types[3]) == 0|| strcmp(word, types[4]) == 0)
-			flag1 = 1;
+			flag1 = YES;
 		while (*ptr != '\0')//До конца строки ищем круглую скобку
 		{
 			if (*ptr == '(')
 
 			{
-				flag2 = 1;
+				flag2 = YES;
 				ptr++;
 				break;
 			}
@@ -62,7 +62,7 @@ void main(void)
 				continue;
 			}
 		}
-		if (flag1 == 1 && flag2 == 1 && flag3 == 0)//Если все флаги в правильном положении - подсвечиваем строку
+		if (flag1 == YES && flag2 == YES && flag3 == NO)//Если все флаги в правильном положении - подсвечиваем строку
 		{
 			textAttribute = foregroundColor0;
 			SetConsoleTextAttribute(hStdout, textAttribute);
@@ -75,9 +75,7 @@ void main(void)
 		}
 		/*Обнуляем флаги и счетчики*/
 		i = 0;
-		flag1 = 0;
-		flag2 = 0;
-		flag3 = 0;
+		flag1 = flag2=flag3= NO;
 	}
 	/*Восстанавливаем стандартные параметры консоли*/
 	SetConsoleTextAttribute(hStdout, 7);
